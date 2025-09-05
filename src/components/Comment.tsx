@@ -30,7 +30,9 @@ const Comment: React.FC<{
             <div className="flex justify-between items-center text-sm text-gray-500 mt-2">
               <span>👤 {String(c.userId)}</span>
               <div className="flex items-center gap-3">
-                <span>{new Date(String(c.createdAt)).toLocaleString()}</span>
+                <span>
+                  {new Date(String(c.createdAt)).toLocaleString() ?? ""}
+                </span>
                 {isOwner && (
                   <button
                     onClick={() => ondeleteHandler(commentId)}
