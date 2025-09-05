@@ -33,13 +33,21 @@ export const loginApi = async ({ email, password }: ICredentials) => {
 
 export const registerApi = async (user: IUser) => {
   try {
-    // . replace ,
     const safeEmailKey = user.email.replace(/\./g, ",");
+
+    const existingResponse: AxiosResponse<IUser | null> = await api.get(
+      `/users/${safeEmailKey}.json`
+    );
+
+    if (existingResponse.data) {
+      return { error: "User already exists" };
+    }
+
     const createdUser = await api.put(`/users/${safeEmailKey}.json`, user);
     return createdUser.data;
   } catch (error) {
     console.error("Failed to register user:", error);
-    throw error;
+    return { error: "Something went wrong. Please try again." };
   }
 };
 
