@@ -4,6 +4,7 @@ import type { IUser } from "../types/blogy.type";
 import { registerApi } from "../services/user/userApi";
 import { useUser } from "../hooks/useUser";
 import { registerSchema } from "../validation-schema/register.validation";
+import { toast } from "react-toastify";
 
 const Register: React.FC = () => {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const Register: React.FC = () => {
       login(data);
       navigate("/");
     } catch (err) {
-      alert(err);
+      toast.error(String(err));
     }
   };
 

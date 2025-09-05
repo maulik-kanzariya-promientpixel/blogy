@@ -40,7 +40,7 @@ const Like: React.FC<{ id: string; likes: number }> = ({ id, likes }) => {
       onClick={onLikeHandler}
       className="inline-block transition-transform duration-300 hover:scale-110 hover:rotate-3 hover:shadow-lg cursor-pointer"
     >
-      {isLiked ? "❤️" : "🤍"} {optimisticLikes} Likes
+      {isLiked ? "❤️" : "🤍"} {likes} Likes
     </span>
   );
 };

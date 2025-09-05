@@ -3,6 +3,7 @@ import { useUser } from "../hooks/useUser";
 import type { IUser } from "../types/blogy.type";
 import { editUser } from "../services/user/userApi";
 import { userDetailsSchema } from "../validation-schema/user.validation";
+import { toast } from "react-toastify";
 
 const UserDetails: React.FC = () => {
   const { user } = useUser();
@@ -26,7 +27,9 @@ const UserDetails: React.FC = () => {
       editUser(user!.email, formData);
       setIsEditing(false);
     } catch (err) {
-      alert(err);
+      toast.error(
+        "Error fetching your blogs please re-try" + JSON.stringify(err)
+      );
     }
   };
 

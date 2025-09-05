@@ -1,22 +1,17 @@
 import React from "react";
 import { useUser } from "../hooks/useUser";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const AlreadyLoginProtection: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const { user } = useUser();
-  const location = useLocation();
 
-  if (!user) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+  if (user && localStorage.getItem("blogyUser")) {
+    return <Navigate to="/" replace />;
   }
 
-  if (user && !localStorage.getItem("blogyUser")) {
-    return <>{children}</>;
-  }
-
-  return <Navigate to="/" replace />;
+  return <>{children}</>;
 };
 
 export default AlreadyLoginProtection;

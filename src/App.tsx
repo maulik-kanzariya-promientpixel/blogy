@@ -21,6 +21,7 @@ import Logout from "./components/Logout";
 import EditBlog from "./components/EditBlog";
 import DefaultProfile from "./components/DefaultProfile";
 import AlreadyLoginProtection from "./utils/AlreadyLoginProtection";
+import { Bounce, ToastContainer } from "react-toastify";
 
 const App: React.FC = () => {
   const router = createBrowserRouter([
@@ -93,6 +94,23 @@ const App: React.FC = () => {
     },
   ]);
 
-  return <RouterProvider router={router}></RouterProvider>;
+  return (
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
+      <RouterProvider router={router}></RouterProvider>
+    </>
+  );
 };
 export default App;

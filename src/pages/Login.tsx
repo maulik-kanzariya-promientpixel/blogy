@@ -5,6 +5,7 @@ import { useUser } from "../hooks/useUser";
 
 import { loginSchema } from "../validation-schema/login.validation";
 import type { IUser } from "../types/blogy.type";
+import { toast } from "react-toastify/unstyled";
 
 const Login: React.FC = () => {
   const [userCredentials, setUserCredentials] = useState({
@@ -37,7 +38,7 @@ const Login: React.FC = () => {
       const data: IUser | { error: string } = await loginApi(userCredentials);
 
       if ("error" in data) {
-        alert(data.error);
+        toast.error(data.error);
       } else {
         login(data);
         navigate(-1);
@@ -46,7 +47,7 @@ const Login: React.FC = () => {
       if (typeof err === "object" && err !== null && "errors" in err) {
         const errors = (err as { errors: string[] }).errors;
         if (Array.isArray(errors)) {
-          alert(errors.join(", "));
+          toast.error(errors.join(", "));
         }
       }
     }

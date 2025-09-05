@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import type { IBlog } from "../types/blogy.type";
 import { getBlogById, updateBlog } from "../services/blogs/blogApi";
 import { editBlogSchema } from "../validation-schema/blog.validation";
+import { toast } from "react-toastify";
 
 const EditBlog: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -34,7 +35,9 @@ const EditBlog: React.FC = () => {
         navigate("/profile/my-blogs");
       }
     } catch (err) {
-      alert(err);
+      toast.error(
+        "Error fetching your blogs please re-try" + JSON.stringify(err)
+      );
     }
   };
 

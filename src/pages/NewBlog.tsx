@@ -4,6 +4,7 @@ import { useUser } from "../hooks/useUser";
 import { sendPost } from "../services/blogs/blogApi";
 import { useNavigate } from "react-router-dom";
 import { newBlogSchema } from "../validation-schema/blog.validation";
+import { toast } from "react-toastify";
 
 const NewBlog: React.FC = () => {
   const { user } = useUser();
@@ -50,8 +51,8 @@ const NewBlog: React.FC = () => {
         console.log(data);
         navigate("/blogs");
       });
-    } catch (err) {
-      alert(err);
+    } catch (err: unknown) {
+      toast.error(String(err));
     }
   };
 
