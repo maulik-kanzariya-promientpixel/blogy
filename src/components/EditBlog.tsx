@@ -30,7 +30,7 @@ const EditBlog: React.FC = () => {
     try {
       await editBlogSchema.validate(formData);
       if (id) {
-        updateBlog(id, formData);
+        updateBlog(id, formData as IBlog);
         navigate("/profile/my-blogs");
       }
     } catch (err) {

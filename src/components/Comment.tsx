@@ -19,18 +19,18 @@ const Comment: React.FC<{
   return (
     <div className="mt-4">
       {Object.entries(comments).map(([commentId, c]) => {
-        const isOwner = user!.email === c.userId;
+        const isOwner = user!.email.toString() === c.userId.toString();
 
         return (
           <div
             key={commentId}
             className="p-3 border rounded-lg mb-3 bg-gray-50 shadow-sm"
           >
-            <p className="text-gray-800">{c.text}</p>
+            <p className="text-gray-800">{String(c.text)}</p>
             <div className="flex justify-between items-center text-sm text-gray-500 mt-2">
-              <span>👤 {c.userId}</span>
+              <span>👤 {String(c.userId)}</span>
               <div className="flex items-center gap-3">
-                <span>{new Date(c.createdAt).toLocaleString()}</span>
+                <span>{new Date(String(c.createdAt)).toLocaleString()}</span>
                 {isOwner && (
                   <button
                     onClick={() => ondeleteHandler(commentId)}

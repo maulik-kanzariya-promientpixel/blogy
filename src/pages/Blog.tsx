@@ -20,7 +20,7 @@ const Blog: React.FC = () => {
 
   useEffect(() => {
     const getComments = async () => {
-      const comment: IComments = await getCommentById(id);
+      const comment: IComments = await getCommentById(id ?? "");
       setComments(comment);
     };
     getComments();
@@ -85,7 +85,7 @@ const Blog: React.FC = () => {
       <CommentForm onSubmit={onCommentHandler} />
 
       <div className="flex justify-between items-center border-t border-gray-200 pt-4 text-sm">
-        <Comment comments={comments} onDelete={ondeleteHandler} />
+        <Comment comments={comments!} onDelete={ondeleteHandler} />
       </div>
     </div>
   );

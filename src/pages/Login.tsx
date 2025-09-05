@@ -4,6 +4,7 @@ import { loginApi } from "../services/user/userApi";
 import { useUser } from "../hooks/useUser";
 
 import { loginSchema } from "../validation-schema/login.validation";
+import type { IUser } from "../types/blogy.type";
 
 const Login: React.FC = () => {
   const [userCredentials, setUserCredentials] = useState({
@@ -33,16 +34,21 @@ const Login: React.FC = () => {
         password: userCredentials.password,
       });
 
-      const data = await loginApi(userCredentials);
+      const data: IUser | { error: string } = await loginApi(userCredentials);
 
-      if (data.error) {
+      if ("error" in data) {
         alert(data.error);
       } else {
         login(data);
         navigate(-1);
       }
-    } catch (err: any) {
-      alert(err.errors[0]);
+    } catch (err: unknown) {
+      if (typeof err === "object" && err !== null && "errors" in err) {
+        const errors = (err as { errors: string[] }).errors;
+        if (Array.isArray(errors)) {
+          alert(errors.join(", "));
+        }
+      }
     }
   };
 

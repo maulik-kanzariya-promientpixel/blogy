@@ -10,7 +10,7 @@ const MyBlogs: React.FC = () => {
   const { user } = useUser();
 
   const userBlogs = Object.entries<IBlog>(blogs).filter(
-    ([blogId, blog]) => blog.authorId === user?.email
+    ([_, blog]) => blog.authorId === user?.email
   );
 
   const deleteBlogHandler = (blogId: string) => {
