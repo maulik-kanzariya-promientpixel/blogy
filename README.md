@@ -1,36 +1,5 @@
-![blogy](https://github.com/user-attachments/assets/85e68aee-309a-4bb1-9b02-2d4d12a0c694)# Blogy 📝
-
-![Uploading blogy.<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title desc">
-  <title id="title">Blogy Icon</title>
-  <desc id="desc">A playful laughing chat bubble with a pen nib to suggest blogging.</desc>
-
-  <!-- Background -->
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#8b5cf6"></stop>
-      <stop offset="100%" stop-color="#06b6d4"></stop>
-    </linearGradient>
-  </defs>
-  <rect x="4" y="4" width="88" height="88" rx="20" fill="url(#g)"></rect>
-
-  <!-- Chat bubble -->
-  <g transform="translate(16,18)">
-    <rect x="0" y="0" width="64" height="46" rx="14" fill="#ffffff" opacity="0.95"></rect>
-    <path d="M18 46 L14 60 L30 46" fill="#ffffff" opacity="0.95"></path>
-
-    <!-- Face -->
-    <circle cx="22" cy="18" r="4" fill="#0f172a"></circle>
-    <circle cx="42" cy="18" r="4" fill="#0f172a"></circle>
-    <path d="M18 28 Q32 40 46 28" fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round"></path>
-
-    <!-- Pen nib -->
-    <path d="M56 38 l10 10 l-6 6 l-10 -10 z" fill="#0f172a"></path>
-    <circle cx="58.5" cy="45.5" r="1.7" fill="#ffffff"></circle>
-  </g>
-</svg>
-svg…]()
-
-
+# Blogy 📝
+<img src="https://github.com/user-attachments/assets/85e68aee-309a-4bb1-9b02-2d4d12a0c694" alt="Blogy" width="300" />
 Welcome to **Blogy** – a sleek, modern blogging platform built with **React**, **TypeScript**, and **TailwindCSS**. Share your thoughts, read blogs, and manage your profile with ease!  
 
 ---
