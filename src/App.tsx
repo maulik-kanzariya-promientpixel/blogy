@@ -34,6 +34,11 @@ const router = createBrowserRouter([
         <GuestLayout />
       </Suspense>
     ),
+    errorElement: (
+      <Suspense fallback={<BlogyLoader />}>
+        <GuestLayout />
+      </Suspense>
+    ),
     children: [
       {
         index: true,
