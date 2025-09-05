@@ -5,7 +5,7 @@ import { useUser } from "../hooks/useUser";
 
 import { loginSchema } from "../validation-schema/login.validation";
 import type { IUser } from "../types/blogy.type";
-import { toast } from "react-toastify/unstyled";
+import { toast } from "react-toastify";
 
 const Login: React.FC = () => {
   const [userCredentials, setUserCredentials] = useState({
@@ -28,6 +28,7 @@ const Login: React.FC = () => {
 
   const onSubmitHandler = async (e: FormEvent) => {
     e.preventDefault();
+    console.log("login clicked");
 
     try {
       await loginSchema.validate({
@@ -47,9 +48,11 @@ const Login: React.FC = () => {
       if (typeof err === "object" && err !== null && "errors" in err) {
         const errors = (err as { errors: string[] }).errors;
         if (Array.isArray(errors)) {
+          console.log(errors.join(", "));
           toast.error(errors.join(", "));
         }
       }
+      toast.error("Error logeed in user");
     }
   };
 
