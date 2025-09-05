@@ -22,7 +22,7 @@ const Profile = lazy(() => import("./pages/Profile"));
 // user pages
 const MyBlogs = lazy(() => import("./components/MyBlogs"));
 const UserDetails = lazy(() => import("./components/UserDetails"));
-const Logout = lazy(() => import("./components/Logout"));
+import Logout from "./components/Logout";
 const EditBlog = lazy(() => import("./components/EditBlog"));
 const DefaultProfile = lazy(() => import("./components/DefaultProfile"));
 
@@ -135,11 +135,7 @@ const router = createBrowserRouter([
           },
           {
             path: "logout",
-            element: (
-              <Suspense fallback={<BlogyLoader />}>
-                <Logout />
-              </Suspense>
-            ),
+            element: <Logout />,
           },
         ],
       },
