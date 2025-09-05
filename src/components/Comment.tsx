@@ -1,6 +1,7 @@
 import React from "react";
 import type { IComments } from "../types/blogy.type";
 import { useUser } from "../hooks/useUser";
+import BlogyLoader from "./UI/Loader";
 
 const Comment: React.FC<{
   comments: IComments;
@@ -12,8 +13,15 @@ const Comment: React.FC<{
     onDelete(id);
   };
 
+  if (!comments || Object.keys(comments).length === 0) {
+    return (
+      <div className="mt-4 text-gray-500 text-center">No comments yet.</div>
+    );
+  }
+
   if (!comments) {
-    return <p className="text-gray-500">No Comments</p>;
+    console.log(comments);
+    return <BlogyLoader />;
   }
 
   return (

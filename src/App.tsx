@@ -1,42 +1,63 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import "react-toastify/dist/ReactToastify.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Bounce, ToastContainer } from "react-toastify";
 
-// layouts
-import GuestLayout from "./layouts/Layout";
-
-// pages
-import Home from "./pages/Home";
-import Blogs from "./pages/Blogs";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+// utils
 import Protected from "./utils/Protected";
-import Blog from "./pages/Blog";
-import NewBlog from "./pages/NewBlog";
-import Profile from "./pages/Profile";
+import AlreadyLoginProtection from "./utils/AlreadyLoginProtection";
+import BlogyLoader from "./components/UI/Loader";
+
+// lazy imports
+const GuestLayout = lazy(() => import("./layouts/Layout"));
+const Home = lazy(() => import("./pages/Home"));
+const Blogs = lazy(() => import("./pages/Blogs"));
+const Login = lazy(() => import("./pages/Login"));
+const Register = lazy(() => import("./pages/Register"));
+const Blog = lazy(() => import("./pages/Blog"));
+const NewBlog = lazy(() => import("./pages/NewBlog"));
+const Profile = lazy(() => import("./pages/Profile"));
 
 // user pages
-import MyBlogs from "./components/MyBlogs";
-import UserDetails from "./components/UserDetails";
-import Logout from "./components/Logout";
-import EditBlog from "./components/EditBlog";
-import DefaultProfile from "./components/DefaultProfile";
-import AlreadyLoginProtection from "./utils/AlreadyLoginProtection";
-import { Bounce, ToastContainer } from "react-toastify";
+const MyBlogs = lazy(() => import("./components/MyBlogs"));
+const UserDetails = lazy(() => import("./components/UserDetails"));
+const Logout = lazy(() => import("./components/Logout"));
+const EditBlog = lazy(() => import("./components/EditBlog"));
+const DefaultProfile = lazy(() => import("./components/DefaultProfile"));
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <GuestLayout />,
+    element: (
+      <Suspense fallback={<BlogyLoader />}>
+        <GuestLayout />
+      </Suspense>
+    ),
     children: [
-      { index: true, element: <Home /> },
-      { path: "blogs", element: <Blogs /> },
+      {
+        index: true,
+        element: (
+          <Suspense fallback={<BlogyLoader />}>
+            <Home />
+          </Suspense>
+        ),
+      },
+      {
+        path: "blogs",
+        element: (
+          <Suspense fallback={<BlogyLoader />}>
+            <Blogs />
+          </Suspense>
+        ),
+      },
       {
         path: "login",
         element: (
           <AlreadyLoginProtection>
-            <Login />
+            <Suspense fallback={<BlogyLoader />}>
+              <Login />
+            </Suspense>
           </AlreadyLoginProtection>
         ),
       },
@@ -44,7 +65,9 @@ const router = createBrowserRouter([
         path: "register",
         element: (
           <AlreadyLoginProtection>
-            <Register />
+            <Suspense fallback={<BlogyLoader />}>
+              <Register />
+            </Suspense>
           </AlreadyLoginProtection>
         ),
       },
@@ -52,7 +75,9 @@ const router = createBrowserRouter([
         path: "blog/:id",
         element: (
           <Protected>
-            <Blog />
+            <Suspense fallback={<BlogyLoader />}>
+              <Blog />
+            </Suspense>
           </Protected>
         ),
       },
@@ -60,7 +85,9 @@ const router = createBrowserRouter([
         path: "new-blog",
         element: (
           <Protected>
-            <NewBlog />
+            <Suspense fallback={<BlogyLoader />}>
+              <NewBlog />
+            </Suspense>
           </Protected>
         ),
       },
@@ -68,15 +95,52 @@ const router = createBrowserRouter([
         path: "profile",
         element: (
           <Protected>
-            <Profile />
+            <Suspense fallback={<BlogyLoader />}>
+              <Profile />
+            </Suspense>
           </Protected>
         ),
         children: [
-          { index: true, element: <DefaultProfile /> },
-          { path: "my-blogs", element: <MyBlogs /> },
-          { path: "my-blogs/edit/:id", element: <EditBlog /> },
-          { path: "details", element: <UserDetails /> },
-          { path: "logout", element: <Logout /> },
+          {
+            index: true,
+            element: (
+              <Suspense fallback={<BlogyLoader />}>
+                <DefaultProfile />
+              </Suspense>
+            ),
+          },
+          {
+            path: "my-blogs",
+            element: (
+              <Suspense fallback={<BlogyLoader />}>
+                <MyBlogs />
+              </Suspense>
+            ),
+          },
+          {
+            path: "my-blogs/edit/:id",
+            element: (
+              <Suspense fallback={<BlogyLoader />}>
+                <EditBlog />
+              </Suspense>
+            ),
+          },
+          {
+            path: "details",
+            element: (
+              <Suspense fallback={<BlogyLoader />}>
+                <UserDetails />
+              </Suspense>
+            ),
+          },
+          {
+            path: "logout",
+            element: (
+              <Suspense fallback={<BlogyLoader />}>
+                <Logout />
+              </Suspense>
+            ),
+          },
         ],
       },
     ],
