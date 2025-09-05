@@ -39,7 +39,9 @@ const Comment: React.FC<{
               <span>👤 {String(c.userId)}</span>
               <div className="flex items-center gap-3">
                 <span>
-                  {new Date(String(c.createdAt)).toLocaleString() ?? ""}
+                  {typeof c.createdAt === "number"
+                    ? new Date(c.createdAt).toLocaleString()
+                    : ""}
                 </span>
                 {isOwner && (
                   <button
